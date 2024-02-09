@@ -1,8 +1,8 @@
 public class PlayListMethodTester {
 
     public static void main(String[] args) {
-        if (args.length < 1) {
-            System.out.println("Please specify the method to test.");
+         if (args.length < 1) {
+            System.out.println("totalduration");
             return;
         }
 
@@ -153,5 +153,5 @@ public class PlayListMethodTester {
             System.out.println("testTitleOfShortestTrack: FAIL. Expected 'Yesterday', got " + shortestTrack);
         }
     }
+    }
 
-}
