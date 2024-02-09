@@ -76,28 +76,21 @@ class PlayList {
     /** Returns the index of the track with the given title in this list.
      *  If such a track is not found, returns -1. */
     public int indexOf(String title) {
-        String modTitle = "";
-        if((int) title.charAt(0) > 90) {
-            modTitle += (char)((int)title.charAt(0) - 32); 
-        }
-        else {
-            modTitle += title.charAt(0);
-        }
-        for (int i = 1; i < title.length(); i++) {
-            if((int)title.charAt(i) > 90) {
-                modTitle += (char)((int) title.charAt(i) + 32);
-            }
-            else {
-            modTitle += title.charAt(i);
-            }
-            
-        }
         for (int i = 0; i < size; i++) {
-            if (tracks[i].getTitle() == modTitle) {
+            if (equals(tracks[i].getTitle(), title) == true) {
                 return i;
             } 
         }
         return -1;
+    }
+
+    // Helper Method
+    private boolean equals(String str1, String str2) {
+        boolean ans = str1.length() == str2.length();
+        for (int i = 0; i < str1.length() && ans; i++) {
+            ans = (str1.charAt(i) == str2.charAt(i));
+        }
+        return ans;
     }
 
     /** Inserts the given track in index i of this list. For example, if the list is
