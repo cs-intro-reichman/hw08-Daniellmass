@@ -76,25 +76,25 @@ class PlayList {
     /** Returns the index of the track with the given title in this list.
      *  If such a track is not found, returns -1. */
     public int indexOf(String title) {
-        String capital = "";
-        for (int i = 0; i < size; i++) {
+      String firstUp = "";
+        for (int i = 0; i < title.length(); i++) {
             if (i == 0) {
                 if(title.charAt(i) > 90) {
-                    capital += (char)((int)title.charAt(0) - 32);
+                    firstUp += (char)((int)title.charAt(0) - 32);
                 }
                 else {
-                    capital += title.charAt(0);
+                    firstUp += title.charAt(0);
                 }    
             }
             else if (title.charAt(i) < 90) {
-                capital += (char) ((int)title.charAt(i) + 32);
+                firstUp += (char) ((int)title.charAt(i) + 32);
             }
             else {
-                capital += title.charAt(i);
+                firstUp += title.charAt(i);
             }      
         }
         for (int i = 0; i < size; i++) {
-            if (equals(tracks[i].getTitle(), capital) == true) {
+            if (equals(tracks[i].getTitle(), firstUp) == true) {
                 return i;
             }
     }
