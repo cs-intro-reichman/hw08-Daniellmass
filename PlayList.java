@@ -77,29 +77,14 @@ class PlayList {
      *  If such a track is not found, returns -1. */
     public int indexOf(String title) {
       for (int i = 0; i < size; i++) {
-        if (equals(title.toLowerCase(), tracks[i].getTitle().toLowerCase()) == true) {
+        if (tracks[i].getTitle().equalsIgnoreCase(title) == true) {
             return i;
         }     
       }   
       return -1;
-}
-       
-        
-    //Helper method
-    private boolean equals(String str1, String str2)  {
-      if (str1 == null && str2 == null) {
-        return true;
-      }
-      if (str1.length() != str2.length()) {
-        return false;
-      }
-      for (int i = 0; i < str1.length(); i++) {
-        if( str1.charAt(i) != str2.charAt(i)) {
-            return false;
-        } 
-      }     
-    return true;
     }
+       
+    
          
       
 
