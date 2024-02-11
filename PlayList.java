@@ -76,38 +76,61 @@ class PlayList {
     /** Returns the index of the track with the given title in this list.
      *  If such a track is not found, returns -1. */
     public int indexOf(String title) {
-      String firstUp = "";
-        for (int i = 0; i < title.length(); i++) {
-            if (i == 0) {
-                if(title.charAt(i) > 90) {
-                    firstUp += (char)((int)title.charAt(0) - 32);
+      for (int i = 0; i < size; i++) {
+        if (equals(title, tracks[i].getTitle()) == true) {
+            return i;
+        }     
+      }
+    String firstUpStr = firstUp(title);
+    for (int i = 0; i < size; i++) {
+        if (equals(firstUpStr, tracks[i].getTitle()) == true) {
+            return i;
+        }     
+      }
+      return -1;
+}
+       
+        
+    //Helper method
+    private String firstUp (String str)  {
+        String firstUp = "";
+        for (int i = 0; i < str.length(); i++) {
+            if (str.charAt(0) != ' ') {
+                if (str.charAt(0) > 'Z') {
+                    firstUp += (char) ((int)str.charAt(0) - 32); 
                 }
                 else {
-                    firstUp += title.charAt(0);
-                }    
+                    firstUp += str.charAt(0);
+                }
             }
-            else if (title.charAt(i) < 90) {
-                firstUp += (char) ((int)title.charAt(i) + 32);
-            }
-            else {
-                firstUp += title.charAt(i);
-            }      
+            else if (str.charAt(i) != ' ') {
+                if (str.charAt(0) > 'Z') {
+                    firstUp += str.charAt(i);
+                }
+                else {
+                    firstUp += (char) ((int)str.charAt(i) + 32);
+                } 
+            }    
         }
-        for (int i = 0; i < size; i++) {
-            if (equals(tracks[i].getTitle(), firstUp) == true) {
-                return i;
-            }
+    return firstUp;
     }
-    return -1;
-    }
+         
+      
 
-    // Helper Method
+    
+    
+
+    // Helper method
     private boolean equals(String str1, String str2) {
-        boolean ans = str1.length() == str2.length();
-        for (int i = 0; i < str1.length() && ans; i++) {
-            ans = (str1.charAt(i) == str2.charAt(i));
+        if (str1.length() != str2.length()) {
+            return false;
         }
-        return ans;
+        for (int i = 0; i < str1.length(); i++) {
+          if (str1.charAt(i) != str2.charAt(i)) {
+            return false;
+          }     
+        }
+        return true;
     }
 
     /** Inserts the given track in index i of this list. For example, if the list is
