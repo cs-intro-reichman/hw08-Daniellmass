@@ -77,62 +77,33 @@ class PlayList {
      *  If such a track is not found, returns -1. */
     public int indexOf(String title) {
       for (int i = 0; i < size; i++) {
-        if (equals(title, tracks[i].getTitle()) == true) {
+        if (equals(title.toLowerCase(), tracks[i].getTitle().toLowerCase()) == true) {
             return i;
         }     
-      }
-    String firstUpStr = firstUp(title);
-    for (int i = 0; i < size; i++) {
-        if (equals(firstUpStr, tracks[i].getTitle()) == true) {
-            return i;
-        }     
-      }
+      }   
       return -1;
 }
        
         
     //Helper method
-    private String firstUp (String str)  {
-        String firstUp = "";
-        for (int i = 0; i < str.length(); i++) {
-            if (str.charAt(0) != ' ') {
-                if (str.charAt(0) > 'Z') {
-                    firstUp += (char) ((int)str.charAt(0) - 32); 
-                }
-                else {
-                    firstUp += str.charAt(0);
-                }
-            }
-            else if (str.charAt(i) != ' ') {
-                if (str.charAt(0) > 'Z') {
-                    firstUp += str.charAt(i);
-                }
-                else {
-                    firstUp += (char) ((int)str.charAt(i) + 32);
-                } 
-            }    
-        }
-    return firstUp;
+    private boolean equals(String str1, String str2)  {
+      if (str1 == null && str2 == null) {
+        return true;
+      }
+      if (str1.length() != str2.length()) {
+        return false;
+      }
+      for (int i = 0; i < str1.length(); i++) {
+        if( str1.charAt(i) != str2.charAt(i)) {
+            return false;
+        } 
+      }     
+    return true;
     }
          
       
 
     
-    
-
-    // Helper method
-    private boolean equals(String str1, String str2) {
-        if (str1.length() != str2.length()) {
-            return false;
-        }
-        for (int i = 0; i < str1.length(); i++) {
-          if (str1.charAt(i) != str2.charAt(i)) {
-            return false;
-          }     
-        }
-        return true;
-    }
-
     /** Inserts the given track in index i of this list. For example, if the list is
      *  (t5, t3, t1), then just after add(1,t4) the list becomes (t5, t4, t3, t1).
      *  If the list is the empty list (), then just after add(0,t3) it becomes (t3).
