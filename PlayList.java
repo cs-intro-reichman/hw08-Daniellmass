@@ -102,7 +102,7 @@ class PlayList {
         else {
             Track temp = new Track(null, null, 0);
             add(track);
-            for (int j = size -1; j > 0; j--) {
+            for (int j = size - 1; j > 0; j--) {
                if (j == i) {
                 break;
                }
@@ -138,7 +138,7 @@ class PlayList {
     public void remove(String title) {
         if (size != 0 && indexOf(title) >= 0 && indexOf(title) <= size - 1) {
             for (int i = 0; i < size; i++) {
-                if (tracks[i].getTitle() == title) {
+                if (tracks[i].getTitle().equals(title)) {
                     remove(i);
                     break;
                 }  
@@ -161,8 +161,8 @@ class PlayList {
             for (int i = size; i < size + other.getSize(); i++) {
                 for (int j = 0; j < other.getSize(); j++) {
                     tracks[i] = other.tracks[j];
-                    size++;
-                }      
+                }
+            size++;      
             }
         }
        
@@ -178,17 +178,15 @@ class PlayList {
         if (start < 0 || start  > size - 1) {
             return -1;
         }
-        int minIndex = 0;
+        int minIndex = start;
         for (int i = start; i < size - 1; i++) {
              if (tracks[i].getDuration() > tracks[i+1].getDuration()) {
-              minIndex = i+1;
+              minIndex = i+1;        
              }
-             else {
-              minIndex = i;
-             }         
         }
         return minIndex;
     } 
+
     
        
 
