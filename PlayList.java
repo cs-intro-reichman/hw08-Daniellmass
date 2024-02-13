@@ -100,16 +100,11 @@ class PlayList {
             return true;
         }
         else {
-            Track temp = new Track(null, null, 0);
             add(track);
-            for (int j = size - 1; j > 0; j--) {
-               if (j == i) {
-                break;
-               }
-               temp = tracks[j];
+            for (int j = size - 1; j > i; j--) {
                tracks[j] = tracks[j-1];
-               tracks[j-1] = temp;           
             }
+            tracks[i] = track;
           return true;
         }
     }   
@@ -137,13 +132,8 @@ class PlayList {
      *  is negative or too big for this list, does nothing. */
     public void remove(String title) {
         if (size != 0 && indexOf(title) >= 0 && indexOf(title) <= size - 1) {
-            for (int i = 0; i < size; i++) {
-                if (tracks[i].getTitle().equals(title)) {
-                    remove(i);
-                    break;
-                }  
-            }
-        }   
+          remove(0);
+        }     
     }
 
     /** Removes the first track from this list. If the list is empty, does nothing. */
@@ -161,9 +151,9 @@ class PlayList {
             for (int i = size; i < size + other.getSize(); i++) {
                 for (int j = 0; j < other.getSize(); j++) {
                     tracks[i] = other.tracks[j];
-                }
-            size++;      
+                }     
             }
+            size += other.getSize();
         }
        
     }
