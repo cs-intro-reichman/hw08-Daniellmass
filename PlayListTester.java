@@ -1,8 +1,8 @@
 public class PlayListTester {
     private static PlayList playList; // Initialize in the main method or reset method
 
-    public static void main(String[] args) {
-        // Check minimum requirement for arguments
+    public static void main(String[] args) {     
+         // Check minimum requirement for arguments
         if (args.length < 1) {
             printUsage();
             return;
@@ -135,6 +135,6 @@ public class PlayListTester {
             System.out.println("Playlist sorted by increasing duration. Playlist order:");
             // Assuming PlayList.toString() is overridden to print track details in order
             System.out.println(playList);
-        }
+        } 
     
 }
