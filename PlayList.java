@@ -132,7 +132,7 @@ class PlayList {
      *  is negative or too big for this list, does nothing. */
     public void remove(String title) {
         if (size != 0 && indexOf(title) >= 0 && indexOf(title) <= size - 1) {
-          remove(0);
+          remove(indexOf(title));
         }     
     }
 
@@ -153,7 +153,7 @@ class PlayList {
                     tracks[i] = other.tracks[j];
                 }     
             }
-            size += other.getSize();
+            size += other.getSize()
         }
        
     }
@@ -169,9 +169,9 @@ class PlayList {
             return -1;
         }
         int minIndex = start;
-        for (int i = start + 1 ; i < size - 1; i++) {
+        for (int i = start; i < size - 1; i++) {
              if (tracks[i].getDuration() > tracks[i+1].getDuration()) {
-              minIndex = i;        
+              minIndex = i+1;        
              }
         }
         return minIndex;
